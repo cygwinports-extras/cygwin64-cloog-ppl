@@ -1,0 +1,19 @@
+CROSS_HOST="x86_64-pc-cygwin"
+inherit cross
+
+NAME="cygwin64-cloog-ppl"
+VERSION=0.15.11
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="CLooG-PPL for Cygwin 64bit toolchain"
+DESCRIPTION="CLooG is a free software and library to generate code for scanning
+Z-polyhedra. That is, it finds a code (e.g. in C, FORTRAN...) that reaches each
+integral point of one or more parameterized polyhedra. "
+HOMEPAGE="http://www.cloog.org/"
+SRC_URI="ftp://gcc.gnu.org/pub/gcc/infrastructure/cloog-ppl-${VERSION}.tar.gz"
+SRC_DIR="cloog-ppl-${VERSION}"
+
+# make this fully parallel-installable with cloog-isl
+CYGCONF_ARGS="--includedir=${CROSS_INCLUDEDIR}/cloog-ppl --with-ppl"
+MAKEOPTS+=" LDFLAGS=-no-undefined bin_PROGRAMS= INFO_DEPS= "
+KEEP_LA_FILES="none"
